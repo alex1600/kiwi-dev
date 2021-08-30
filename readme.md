@@ -19,4 +19,6 @@ New to the community? Got a lot of questions but don't know where to post them? 
 
 - Alexandre2BI (Twitter: @Alexandre2BI)
 
+# Contributors
 
+- [Tomgelu](https://github.com/tomgelu) (LUA/Love2D)
