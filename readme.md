@@ -4,7 +4,7 @@ Welcome on the community hub where you can find scripts to help you in your proj
 
 # About the community
 
-Originally, the community was borned on Discord thanks to streams Alexandre2BI on Twitch. 
+Originally, the community was borned on Discord thanks to Alexandre2BI's streams on Twitch. 
 But many other developper and also french streamers are joined the community to share their scripts and skills ! From this, we made the decision to built this public repository.  
 
 # Contributor guidelines
