@@ -4,7 +4,4 @@ Yellow between 31 & 59<br>
 Green 60+<br>
 
 # HOW TO USE:
-Add Text ui in your project name " FPS " add the script at your coponent FPS 
-
-# WARNING
-No Warn
+Add Text ui in your project name " FPS " add the script at your component FPS 
