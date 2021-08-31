@@ -1,6 +1,5 @@
 /*
- * ADD UI TEXT in your Scene 
- * Place this script on the TEXT gameobject 
+ * Place this script on a gameobject in your scene
  * Press Play 
  */
 
@@ -8,25 +7,25 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class FPS : MonoBehaviour {
-    public Text _fpsText;
-    public float _hudRefreshRate = .1f;
-    private float _timer;
+    float deltaTime = 0.0f;
 
-    void Start() {
-       _fpsText = GetComponent<Text>();
+    void Update()
+    {
+        deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
     }
 
-    void Update() {
-        if(Time.unscaledTime > _timer) {
-            int fps = (int)(1f / Time.unscaledDeltaTime);
-            if(fps <= 30)
-                _fpsText.color = Color.red;
-            if(fps >= 31 || fps <= 59)
-                _fpsText.color = new Color(255, 165, 0);
-            if(fps >= 60)
-                _fpsText.color = Color.green;
-            _fpsText.text = "FPS: " + fps;
-            _timer = Time.unscaledTime + _hudRefreshRate;
-        }
+    void OnGUI()
+    {
+        int w = Screen.width, h = Screen.height;
+
+        GUIStyle style = new GUIStyle();
+        Rect rect = new Rect(0.8f * w , 0, w, h * 2 / 100);
+        style.alignment = TextAnchor.UpperLeft;
+        style.fontSize = h * 3 / 100;
+        style.normal.textColor = Color.white;
+        float msec = deltaTime * 1000.0f;
+        float fps = 1.0f / deltaTime;
+        string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
+        GUI.Label(rect, text, style);
     }
 }
