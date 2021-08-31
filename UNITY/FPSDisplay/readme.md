@@ -1,7 +1,4 @@
-Show FPS upper-right of your screnn with Color <br>
-Red below 30<br>
-Yellow between 31 & 59<br>
-Green 60+<br>
+Show FPS upper-right of your screen
 
 # HOW TO USE:
-Add Text ui in your project name " FPS " add the script at your component FPS 
+Create a gameobject in your scene and add the script as a component on it
