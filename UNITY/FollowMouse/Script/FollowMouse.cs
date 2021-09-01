@@ -6,10 +6,6 @@ public class FollowMouse : MonoBehaviour {
     private bool invoke;
     [SerializeField]private Camera camera;
 
-    private void Start() {
-        camera = GetComponent<Camera>();
-    }
-
     void FixedUpdate() {
         if((Vector2)Input.mousePosition != lastMousePosition) {
             lastMousePosition = (Vector2)Input.mousePosition;
