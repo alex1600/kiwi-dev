@@ -11,5 +11,3 @@ Shake your camera using Cinemachine Package !
 
 - Set the other values to 0 except the Frequency Gain to 1 (or what ever you like)
 ![image](https://user-images.githubusercontent.com/42917206/131716737-a0de0b28-d7d9-4773-a8aa-0eb8316998c7.png)
-
-- Finally, you can call anywhere in your script CameraShake.Shake(amp, duration) to shake your camera !
