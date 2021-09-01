@@ -1,31 +1,26 @@
-/*
- * Place this script on a gameobject in your scene
- * Press Play 
- */
-
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class FPS : MonoBehaviour {
-    float deltaTime = 0.0f;
+public class FPS : MonoBehaviour{
+    private GUIStyle Meow;
+    private Rect rect;
+    private float deltaTime = 0f;
 
-    void Update()
-    {
-        deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
+    void Start(){
+        Meow = new GUIStyle();
+        Meow.fontSize = 20;
+        rect = new Rect((Screen.width % 5), (Screen.height % 5f), 0f, 0f);       
     }
-
-    void OnGUI()
-    {
-        int w = Screen.width, h = Screen.height;
-
-        GUIStyle style = new GUIStyle();
-        Rect rect = new Rect(0.8f * w , 0, w, h * 2 / 100);
-        style.alignment = TextAnchor.UpperLeft;
-        style.fontSize = h * 3 / 100;
-        style.normal.textColor = Color.white;
-        float msec = deltaTime * 1000.0f;
-        float fps = 1.0f / deltaTime;
-        string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
-        GUI.Label(rect, text, style);
+  
+    private void OnGUI() {
+        deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
+        float msec = deltaTime * 1000f;
+        float fps = 1f / deltaTime;
+        if(fps <= 30) Meow.normal.textColor = new Color(255, 0, 0);
+        if(fps >= 31) Meow.normal.textColor = new Color(255, 165, 0);
+        if(fps >= 59) Meow.normal.textColor = new Color(0, 255, 0);
+        string text = string.Format("{0:0.} fps ({1:0.0})",fps, msec);
+        GUI.Label(rect, text, Meow);
     }
 }
