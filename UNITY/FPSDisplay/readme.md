@@ -5,6 +5,3 @@ Green 60+<br>
 
 # HOW TO USE:
 Right Click > PsykoDev > FPSDisplay in hierarchy
-
-# WARNING
-No Warn
