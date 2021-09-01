@@ -10,9 +10,9 @@ public class FPS : MonoBehaviour{
     void Start(){
         Meow = new GUIStyle();
         Meow.fontSize = 20;
-        rect = new Rect((Screen.width % 5), (Screen.height % 5f), 0f, 0f);
-        
+        rect = new Rect((Screen.width % 5), (Screen.height % 5f), 0f, 0f);       
     }
+  
     private void OnGUI() {
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
         float msec = deltaTime * 1000f;

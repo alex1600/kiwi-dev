@@ -1,10 +1,7 @@
-Show FPS upper-Left of your screnn with Color <br>
-Red below 30<br>
-Yellow between 31 & 59<br>
-Green 60+<br>
+Show FPS upper-Left of your screnn with Color
+Red below 30
+Yellow between 31 & 59
+Green 60+
 
 # HOW TO USE:
-add scirpt in any gameObject
-
-# WARNING
-No Warn
+Create a gameobject in your scene and add the script as a component on it
