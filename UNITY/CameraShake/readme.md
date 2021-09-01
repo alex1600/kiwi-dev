@@ -9,3 +9,6 @@ Allow to shake your camera using Cinemachine Package
 - Set the other values to 0 except the Frequency Gain to 1 (or what ever you like)
 
 - Finally, you can call anywhere in your script CameraShake.Shake(amp, duration) to shake your camera ! 
+
+# WARNING:
+- The script is using MonoSingleton as parent class to make the class accessible from anywhere via its Instance. You can get this class in the kiwi-dev repo!
