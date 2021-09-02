@@ -7,17 +7,14 @@ public abstract class BaseCMD
 {
     private string commandId;
     private string commandDescription;
-    private string commandFormat;
 
     public string Id { get { return commandId; } }
     public string Description { get { return commandDescription; } }
-    public string Format { get { return commandFormat; } }
 
-    public BaseCMD(string commandId, string commandDescription, string commandFormat)
+    public BaseCMD(string commandId, string commandDescription)
     {
         this.commandId = commandId;
         this.commandDescription = commandDescription;
-        this.commandFormat = commandFormat;
     }
 
     public abstract void Invoke(string[] args);
@@ -26,8 +23,8 @@ public abstract class BaseCMD
 public class ConsoleCMD : BaseCMD
 {
     Action<string[]> action;
-    public ConsoleCMD(string commandId, string commandDescription, string commandFormat, Action<string[]> action) 
-        : base(commandId, commandDescription, commandFormat)
+    public ConsoleCMD(string commandId, string commandDescription, Action<string[]> action) 
+        : base(commandId, commandDescription)
     {
         this.action = action;
     }
