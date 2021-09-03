@@ -7,7 +7,7 @@ public class MobileSafeArea : MonoBehaviour {
         Panel = GetComponent<RectTransform> ();
         Refresh();
     }
-    private void Update (){
+    private void FixedUpdate (){
         Refresh();
     }
     private void Refresh (){
