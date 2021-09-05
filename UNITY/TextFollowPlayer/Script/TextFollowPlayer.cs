@@ -11,10 +11,13 @@ public class TextFollowPlayer : MonoBehaviour
     public float lastXVal;
     public SpriteRenderer flip;
 
+    private Camera mainCam;
+    
     // Start is called before the first frame update
     void Start()
     {
         flip = gameObject.GetComponent<SpriteRenderer>();
+        mainCam = Camera.main;
     }
 
     // Update is called once per frame
@@ -36,8 +39,9 @@ public class TextFollowPlayer : MonoBehaviour
         mTransform = transform;
         mTextOverTransform = nameText.transform;
     }
+    
     void LateUpdate() {
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(mTransform.position);
+        Vector3 screenPos =  mainCam.WorldToScreenPoint(mTransform.position);
         screenPos.y += 1;
     }
 
