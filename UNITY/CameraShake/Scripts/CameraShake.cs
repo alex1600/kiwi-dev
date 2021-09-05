@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraShake : MonoSingleton<CameraShake>
+public class CameraShake : MonoBehaviour
 {
     public CinemachineVirtualCamera vcam;
     private static CinemachineBasicMultiChannelPerlin noise;
     private static List<float> shakesAmp;
     [SerializeField] private float nerfShake = 1;
-    public override void Init()
+    
+    private void Awake()
     {
-        //noise = vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         noise = vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         shakesAmp = new List<float>(20);
     }
@@ -19,8 +19,8 @@ public class CameraShake : MonoSingleton<CameraShake>
     /// <summary>
     /// Make a shaking effect on the camera
     /// </summary>
-    /// <param name="amp"></param>
-    /// <param name="duration"></param>
+    /// <param name="amp">Shake amplitude</param>
+    /// <param name="duration">Shake duration</param>
     public static void Shake(float amp, float duration)
     {
         float realAmp = amp * Instance.nerfShake;
@@ -48,9 +48,9 @@ public class CameraShake : MonoSingleton<CameraShake>
     }
 
     /// <summary>
-    /// Get maximum of values
+    /// Get the maximum value of an array
     /// </summary>
-    /// <param name="values">Values to get maximum</param>
+    /// <param name="values">Array of values</param>
     /// <returns>Maximum value</returns>
     private static float Max(params float[] values)
     {
