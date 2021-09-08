@@ -1,6 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//List containing all resolutions
+[System.Serializable] 
+public class ResItem {
+    public int widht;
+    public int height;
+}
+
 public class ResolutionManager : MonoBehaviour {
     public List<ResItem> resolutions = new List<ResItem>();
     public int currentResIndex = 0;
@@ -26,8 +33,4 @@ public class ResolutionManager : MonoBehaviour {
         Screen.SetResolution(resolutions[currentResIndex].widht, resolutions[currentResIndex].height, fullScreenMode);
     }
     
-}
-//List containing all resolutions
-[System.Serializable] public class ResItem{
-    public int widht, height;
 }
