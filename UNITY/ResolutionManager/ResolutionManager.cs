@@ -8,13 +8,15 @@ public class ResolutionManager : MonoBehaviour {
     //Link this method to UI > Dropdown > OnValueChanged
     public void SetResolution(int resIndex){
         currentResIndex = resIndex;
-        SaveManager.instance.settingsData.resolutionIndex = resIndex;
+        // Use resIndex to retrieve later the resolution selected by the player, example with a SaveManager:
+        // SaveManager.instance.resolutionIndex = resIndex;
         ApplyResolution();
     }
     //Link this method to UI > Toggle > OnValueChanged
-    public void SetFullScreenMode(bool fullScren){
-        fullScreenMode = fullScren;
-        SaveManager.instance.settingsData.fullScreenMode = fullScren;
+    public void SetFullScreenMode(bool fullScreen){
+        fullScreenMode = fullScreen;
+        // Use fullScreen to retrieve later the choice selected by the player, example with a SaveManager:
+        // SaveManager.instance.fullScreenMode = fullScreen;
         ApplyResolution();
     }
     public void ApplyResolution(){
