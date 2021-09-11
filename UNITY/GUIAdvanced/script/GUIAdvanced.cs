@@ -12,9 +12,9 @@ public class GUIAdvanced : MonoBehaviour
 	private void OnGUI(){
 		GUI.color = Color.white;
 		Scene activeScene = SceneManager.GetActiveScene();
-		GUI1 = GUI.Window(0, GUI1, new GUI.WindowFunction(SwitchWindow0), activeScene.name + " [Chalut =^.^=]");
+		GUI1 = ClampToScreen(GUI.Window(0, GUI1, new GUI.WindowFunction(SwitchWindow0), activeScene.name + " [Chalut =^.^=]"));
 
-		GUI2 = GUI.Window(1, GUI2, new GUI.WindowFunction(SwitchWindows1), "[Chalut =^.^= DevTool]");
+		GUI2 = ClampToScreen(GUI.Window(1, GUI2, new GUI.WindowFunction(SwitchWindows1), "[Chalut =^.^= DevTool]"));
 	}
 
 	private void SwitchWindow0(int id){
@@ -61,4 +61,9 @@ public class GUIAdvanced : MonoBehaviour
 		}
 		GUI.DragWindow(new Rect(0f, 0f, 10000f, 20f));//don't touch this
 	}
+	private Rect ClampToScreen(Rect r){
+		r.x = Mathf.Clamp(r.x,0,Screen.width-r.width);
+		r.y = Mathf.Clamp(r.y,0,Screen.height-r.height);
+		return r;
+    	}
 }
