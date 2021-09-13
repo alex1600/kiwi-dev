@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(TrailRenderer))]
 public class trailRendererRandom : MonoBehaviour
 {
 	[SerializeField]private TrailRenderer trailRenderer;
@@ -10,14 +11,9 @@ public class trailRendererRandom : MonoBehaviour
 	GradientAlphaKey[] alphaKey;
 
 	private Start () {
-		if(trailRenderer == null) {
-			trailRenderer = gameObject.AddComponent<TrailRenderer>();
-			trailRenderer.material = new Material(Shader.Find("Sprites/Default"));
-			trailRenderer.colorGradient = NewGrad();
-		} else {
-			trailRenderer = gameObject.GetComponent<TrailRenderer>();
-			trailRenderer.colorGradient = NewGrad();
-		}
+		trailRenderer = gameObject.GetComponent<TrailRenderer>();
+		trailRenderer.material = new Material(Shader.Find("Sprites/Default"));
+		trailRenderer.colorGradient = NewGrad();
 	}
 
 	Gradient NewGrad() {
