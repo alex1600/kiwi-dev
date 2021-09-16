@@ -11,8 +11,7 @@ using UnityEngine;
 [InitializeOnLoad]
 #endif
 public class FPSDisplay : MonoBehaviour {
-    //public Rect startRect = new Rect(10, 10, 75, 50);
-    public Rect startRect = new Rect(10, 10, 110, 45);
+    public Rect startRect = new Rect(10, 10, 145, 40);
     public bool updateColor = true;
     public bool allowDrag = true;
     public float frequency = 0.5F;
