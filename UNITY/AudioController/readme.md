@@ -1,4 +1,5 @@
-Audio Controller Streaming music / Downloaded Music / Imported music form game, PC 
+Audio Controller Streaming music / Downloaded Music / Imported music form game, PC <br>
+/!\ WINDOWS ONLY FOR NOW ! /!\
 
 # HOW TO USE:
 
