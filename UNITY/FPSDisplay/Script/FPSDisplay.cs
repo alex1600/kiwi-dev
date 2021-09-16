@@ -1,8 +1,3 @@
-/*
- * Right Click > Utils > FPSDisplay in hierarchy
- * Press Play 
- */
-
 using System.Collections;
 using UnityEditor;
 using UnityEngine;
@@ -10,18 +5,19 @@ using UnityEngine;
 #if UNITY_EDITOR
 [InitializeOnLoad]
 #endif
+
 public class FPSDisplay : MonoBehaviour {
-    public Rect startRect = new Rect(10, 10, 145, 40);
+    [SerializeField] private Rect startRect = new Rect(10, 10, 145, 40);
+    [SerializeField] private float fps;
+    [SerializeField] private float MaxFPS = 0;
+    [SerializeField] private float MinFPS = 9999;
     public bool updateColor = true;
     public bool allowDrag = true;
     public float frequency = 0.5F;
-    public int nbDecimal = 1;
     private float accum = 0f;
+    public int nbDecimal = 1;
     private int frames = 0;
-    [SerializeField] private float MaxFPS = 0;
-    [SerializeField] private float MinFPS = 9999;
     private Color color = Color.white;
-    private string sFPS = "";
     private GUIStyle style;
 
 #if UNITY_EDITOR
@@ -34,32 +30,34 @@ public class FPSDisplay : MonoBehaviour {
         Selection.activeObject = go;
     }
 #endif
+
     void Start() {
         StartCoroutine(FPS());
+        InvokeRepeating(nameof(GetMinMax), 1f, 1f);
     }
 
     void Update() {
         accum += Time.timeScale / Time.deltaTime;
-        ++frames;
-        Invoke(nameof(GetMinMax), 1f);
+        ++frames;    
     }
 
     void GetMinMax() {
-        if(MaxFPS < float.Parse(sFPS))
-            MaxFPS = Mathf.Max(float.Parse(sFPS));
-        if(MinFPS > float.Parse(sFPS))
-            MinFPS = Mathf.Min(float.Parse(sFPS));
+        if(MaxFPS < fps)
+            MaxFPS = Mathf.Max(fps);
+        if(MinFPS > fps)
+            MinFPS = Mathf.Min(fps);
     }
+
     IEnumerator FPS() {
         while(true) {
-            float fps = accum / frames;
-            sFPS = fps.ToString("f" + Mathf.Clamp(nbDecimal, 0, 10));
+            fps = accum / frames;
             color = (fps >= 30) ? new Color(0, 255, 0) : ((fps > 10) ? new Color(255, 0, 0) : new Color(255, 165, 0));
             accum = 0.0F;
             frames = 0;
             yield return new WaitForSeconds(frequency);
         }
     }
+
     void OnGUI() {
         if(style == null) {
             style = new GUIStyle(GUI.skin.label);
@@ -69,10 +67,12 @@ public class FPSDisplay : MonoBehaviour {
         GUI.color = updateColor ? color : Color.white;
         startRect = ClampToScreen(GUI.Window(0, startRect, FPSWindow, ""));
     }
+
     void FPSWindow(int windowID) {
-        GUI.Label(new Rect(0, 0, startRect.width, startRect.height), $"{sFPS} FPS\n[{MinFPS}Min {MaxFPS}Max]", style);
+        GUI.Label(new Rect(0, 0, startRect.width, startRect.height), $"{fps.ToString("f" + Mathf.Clamp(nbDecimal, 0, 10))} FPS\n[{MinFPS.ToString("f" + Mathf.Clamp(nbDecimal, 0, 10))}Min {MaxFPS.ToString("f" + Mathf.Clamp(nbDecimal, 0, 10))}Max]", style);
         if(allowDrag) GUI.DragWindow(new Rect(0, 0, Screen.width, Screen.height));
     }
+
     private Rect ClampToScreen(Rect r) {
         r.x = Mathf.Clamp(r.x, 0, Screen.width - r.width);
         r.y = Mathf.Clamp(r.y, 0, Screen.height - r.height);
