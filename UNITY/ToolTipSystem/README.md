@@ -21,7 +21,8 @@ Kiwi ToolTip is a UI prefab for Unity Engine. Used to give a ToolTip context men
 1. Drag and drop the "MainCamera" object in the "Render Camera" area in the canvas component of ToolTipCanvas.
 2. Select the "Header" or "Content" object in the hierarchy and install the Text Mesh Pro plugin if Unity offers it. If you have already installed the Text Mesh Pro plugin, go to the next step.
 3. Check the position of the object "NewToolTip" in the hierarchy. This object must be the last child in the "ToolTipCanvas".
-4. Press the "play" button in the Unity editor to test the prefab.
+4. if you don't have an Event System in your scene then add one.
+5. Press the "play" button in the Unity editor to test the prefab.
 
 ### Add ToolTip to an object
 1. Select the object to which you want to add a tooltip.
