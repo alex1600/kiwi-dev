@@ -53,7 +53,7 @@ public class AudioController : MonoBehaviour {
     public static void DLVIDEO(string url) {
         try {
             Process process = new Process();
-            var final = "/C " + Directory.GetCurrentDirectory() + $"\\Assets\\YoutubeDL\\youtube-dl.exe --extract-audio --audio-format mp3 --prefer-ffmpeg {url} -o %(title)s.f%(format_id)s.%(ext)s -w && ffmpeg -i %(title)s.%(ext)s -acodec libmp3lame {Directory.GetCurrentDirectory()}\\Assets\\YoutubeDL\\ %(title).mp3";
+            var final = $"/C {Directory.GetCurrentDirectory()}\\Assets\\YoutubeDL\\youtube-dl.exe --extract-audio --audio-format mp3 --prefer-ffmpeg {url} -o %(title)s.f%(format_id)s.%(ext)s -w && ffmpeg -i %(title)s.%(ext)s -acodec libmp3lame {Directory.GetCurrentDirectory()}\\Assets\\YoutubeDL\\ %(title).mp3";
             ProcessStartInfo startInfo = new ProcessStartInfo() {
                 FileName = "cmd.exe",
                 UseShellExecute = false,
