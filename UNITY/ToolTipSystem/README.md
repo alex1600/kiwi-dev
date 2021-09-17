@@ -7,10 +7,10 @@ Kiwi ToolTip is a UI prefab for Unity Engine. Used to give a ToolTip context men
 
 ---
 
-## Installation
-
+## KiwiToolTip Installation
+>- **0 -** Download KiwiToolTip.unitypackage
 >- **1 -** Right clic in the Assets folder in the Project panel of Unity Editor, choose Import Package and Custom Package.
->-  **2 -** Go to the package directory and open the package.
+>-  **2 -** Go to the  KiwiToolTip package directory and open the package.
 >-  **3 -** Check all components of the selected package and clic on Import.
 
 ---
@@ -20,7 +20,7 @@ Kiwi ToolTip is a UI prefab for Unity Engine. Used to give a ToolTip context men
 ### First steps
 1. Drag and drop the "MainCamera" object in the "Render Camera" area in the canvas component of ToolTipCanvas.
 2. Select the "Header" or "Content" object in the hierarchy and install the Text Mesh Pro plugin if Unity offers it. If you have already installed the Text Mesh Pro plugin, go to the next step.
-3. Check the position of the object "NewToolTip" in the hierarchy. This object must be the last one in the "ToolTipCanvas".
+3. Check the position of the object "NewToolTip" in the hierarchy. This object must be the last child in the "ToolTipCanvas".
 4. Press the "play" button in the Unity editor to test the prefab.
 
 ### Add ToolTip to an object
