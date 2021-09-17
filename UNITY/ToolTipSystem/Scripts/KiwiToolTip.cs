@@ -15,6 +15,8 @@ public class KiwiToolTip : MonoBehaviour
     [SerializeField] private LayoutElement layoutElement;
 
     private KiwiToolTipSystem kttSystem;
+    
+    private Camera mainCam;
 
     private Vector2 pos;
     private int characterWrapLimit;
@@ -23,6 +25,7 @@ public class KiwiToolTip : MonoBehaviour
     {
         kttSystem = GetComponentInParent<KiwiToolTipSystem>();
         characterWrapLimit = kttSystem.characterWrapLimit;
+        mainCam = Camera.main;
     }
 
     public void SetText(string content, string header = "")
@@ -58,19 +61,19 @@ public class KiwiToolTip : MonoBehaviour
 
         if (kttSystem.orientation == KiwiToolTipSystem.Orientation.Top)
         {
-            pos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0f, kttSystem.distanceToPointer);
+            pos = mainCam.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0f, kttSystem.distanceToPointer);
         }
         else if (kttSystem.orientation == KiwiToolTipSystem.Orientation.Down)
         {
-            pos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0f, - kttSystem.distanceToPointer);
+            pos = mainCam.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0f, - kttSystem.distanceToPointer);
         }
         else if (kttSystem.orientation == KiwiToolTipSystem.Orientation.Left)
         {
-            pos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(-kttSystem.distanceToPointer * 2, 0f);
+            pos = mainCam.ScreenToWorldPoint(Input.mousePosition) + new Vector3(-kttSystem.distanceToPointer * 2, 0f);
         }
         else if (kttSystem.orientation == KiwiToolTipSystem.Orientation.Right)
         {
-            pos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(kttSystem.distanceToPointer * 2, 0f);
+            pos = mainCam.ScreenToWorldPoint(Input.mousePosition) + new Vector3(kttSystem.distanceToPointer * 2, 0f);
         }
 
         transform.position = pos;
