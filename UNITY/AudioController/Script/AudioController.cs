@@ -12,6 +12,7 @@ using UnityEngine.Video;
 #endif
 [RequireComponent(typeof(AudioSource))]
 public class AudioController : MonoBehaviour {
+
     #if UNITY_EDITOR
     [MenuItem("GameObject/Utils/AudioController", false, 10)]
     static void CreateCustomGameObject(MenuCommand menuCommand) {
@@ -22,18 +23,22 @@ public class AudioController : MonoBehaviour {
         Selection.activeObject = go;
     }
 #endif
+
     private AudioSource audioSource;
     private AudioClip myClip;
     public string SoundFromUrl;
+
     void Start() {
         audioSource = GetComponent<AudioSource>();
         if(audioSource.clip != null) { return; } else {
             StartCoroutine(GetAudioClip());
         }      
     }
+
     //https://ciihuy.com/downloads/music.mp3
     //https://www.youtube.com/watch?v=J7IMwop3RHs
     //https://www.youtube.com/watch?v=Kbj2Zss-5GY
+
     IEnumerator GetAudioClip() {
         if(SoundFromUrl == null) {
             SoundFromUrl = "https://ciihuy.com/downloads/music.mp3";
@@ -50,6 +55,7 @@ public class AudioController : MonoBehaviour {
             audioSource.Play();
         }
     }
+
     public static void DLVIDEO(string url) {
         try {
             Process process = new Process();
@@ -72,10 +78,13 @@ public class AudioController : MonoBehaviour {
             UnityEngine.Debug.Log(e);
         }
     }
+
     public static void MoveMusic() {
+
         string filepath = Directory.GetCurrentDirectory();
         string path2 = Directory.GetCurrentDirectory() + "\\Assets\\Sounds\\";
         DirectoryInfo d = new DirectoryInfo(filepath);
+        
         foreach(var file in d.GetFiles("*.mp3")) {
             try {
                 if(!Directory.Exists(path2)) {
@@ -91,13 +100,13 @@ public class AudioController : MonoBehaviour {
                     File.Delete(path2);
                 UnityEngine.Debug.Log($"The process failed: {ex}");
             }
+
         }
         try {
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
             EditorApplication.LockReloadAssemblies();
-        }
-        finally {
+        }finally {
             EditorApplication.UnlockReloadAssemblies();
         }
     }
