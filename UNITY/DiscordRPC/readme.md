@@ -1,6 +1,7 @@
 DISCORD RPC DEMO Unity Package
 
 # HOW TO USE:
+Note: Make sure your Activity status is enabled in discord settings
 Extract " DiscordRPC.unitypackage " in our project, you can find a test map in Demo / Scene / Meow,
 
 you can find in Demo / Script a lil script to help you to understand how to update our Discord status
