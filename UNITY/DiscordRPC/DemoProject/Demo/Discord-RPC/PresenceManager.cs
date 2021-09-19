@@ -34,8 +34,9 @@ namespace DiscordPresence
 
         public void OnClick()
         {
-            
+            #if UNITY_EDITOR
             Debug.Log("Discord: on click!");
+            #endif
             clickCounter++;
 
             presence.details = string.Format("Button clicked {0} times", clickCounter);
@@ -45,14 +46,18 @@ namespace DiscordPresence
 
         public void RequestRespondYes()
         {
+        #if UNITY_EDITOR
             Debug.Log("Discord: responding yes to Ask to Join request");
+            #endif
             DiscordRpc.Respond(joinRequest.userId, DiscordRpc.Reply.Yes);
             hasResponded.Invoke();
         }
 
         public void RequestRespondNo()
         {
+        #if UNITY_EDITOR
             Debug.Log("Discord: responding no to Ask to Join request");
+            #endif
             DiscordRpc.Respond(joinRequest.userId, DiscordRpc.Reply.No);
             hasResponded.Invoke();
         }
@@ -61,7 +66,9 @@ namespace DiscordPresence
         public void ReadyCallback()
         {
             callbackCalls++;
+            #if UNITY_EDITOR
             Debug.Log("Discord: ready");
+            #endif
             onConnect.Invoke();
             UpdatePresence(null);
         }
@@ -69,34 +76,44 @@ namespace DiscordPresence
         public void DisconnectedCallback(int errorCode, string message)
         {
             callbackCalls++;
+            #if UNITY_EDITOR
             Debug.Log(string.Format("Discord: disconnect {0}: {1}", errorCode, message));
+            #endif
             onDisconnect.Invoke();
         }
 
         public void ErrorCallback(int errorCode, string message)
         {
             callbackCalls++;
+            #if UNITY_EDITOR
             Debug.Log(string.Format("Discord: error {0}: {1}", errorCode, message));
+            #endif
         }
 
         public void JoinCallback(string secret)
         {
             callbackCalls++;
+            #if UNITY_EDITOR
             Debug.Log(string.Format("Discord: join ({0})", secret));
+            #endif
             onJoin.Invoke(secret);
         }
 
         public void SpectateCallback(string secret)
         {
             callbackCalls++;
+            #if UNITY_EDITOR
             Debug.Log(string.Format("Discord: spectate ({0})", secret));
+            #endif
             onSpectate.Invoke(secret);
         }
 
         public void RequestCallback(ref DiscordRpc.JoinRequest request)
         {
             callbackCalls++;
+            #if UNITY_EDITOR
             Debug.Log(string.Format("Discord: join request {0}#{1}: {2}", request.username, request.discriminator, request.userId));
+            #endif
             joinRequest = request;
             onJoinRequest.Invoke(request);
         }
@@ -124,7 +141,9 @@ namespace DiscordPresence
 
         void OnEnable()
         {
+        #if UNITY_EDITOR
             Debug.Log("Discord: init");
+            #endif
             callbackCalls = 0;
 
             handlers = new DiscordRpc.EventHandlers();
@@ -139,7 +158,9 @@ namespace DiscordPresence
 
         void OnDisable()
         {
+        #if UNITY_EDITOR
             Debug.Log("Discord: shutdown");
+            #endif
             DiscordRpc.Shutdown();
         }
 
