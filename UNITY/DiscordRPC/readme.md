@@ -20,7 +20,7 @@ in the Prefab " Presence Manager " or Script " PresenceManager " you need update
 
 # Make your Discord BotID
 
-First you need to here https://discord.com/developers/applications connect you with your account and create new app
+First you need to go here https://discord.com/developers/applications connect you with your account and create new app
 
 ![](https://cdn.discordapp.com/attachments/877432819746488380/889124001983643698/unknown.png)
 
@@ -41,11 +41,11 @@ Note: .png, .jpg, or .jpeg — 1024x1024 recommended, 512x512 minimum
 
 when it's done you need wait a bit and let Discord approve your image uploaded
 
-now you can go in " Rich presence / Visualizer " and select you icon emplacement 
+now you can go in " Rich presence / Visualizer " and select your icon location 
 
 ![](https://cdn.discordapp.com/attachments/877432819746488380/889127293639856128/unknown.png)
 
-IMPORTANT NOTE! : your icon is used as key, so ket the name and put in your " Presence Manager " 
+IMPORTANT NOTE! : your icon is used as key, so keep the name and put in in your " Presence Manager " 
 
 ![](https://cdn.discordapp.com/attachments/877432819746488380/889128459908042802/unknown.png)
 
