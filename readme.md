@@ -23,6 +23,7 @@ New to the community? Got a lot of questions but don't know where to post them? 
 # Contributors
 
 - [Tomgelu](https://github.com/tomgelu) (LUA/Love2D)
-- [PsykoDev](https://github.com/PsykoDev) (UNITY/DISCORD BOT/AI)
+- [PsykoDev](https://github.com/PsykoDev) (UNITY/DISCORD/AI)
 - [NoonSense](https://github.com/NoonSense) (UNITY)
 - [HITOA](https://github.com/HITOA) (UNITY)
+- [XanTiuM-Dev](https://github.com/XanTiuM-Dev) (UNITY)
