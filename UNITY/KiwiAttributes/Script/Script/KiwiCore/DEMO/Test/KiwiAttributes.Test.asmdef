@@ -1,0 +1,14 @@
+{
+    "name": "KiwiAttributes.Test",
+    "references": [
+        "KiwiAttributes.Core"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
