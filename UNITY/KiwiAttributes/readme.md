@@ -1,15 +1,15 @@
-Bunch of Attributes options for Unity
+Bunch of Attribute to add above your variables to improve your inspector ! 
 
 # HOW TO USE:
-just import unity package
+- Install & import unity package
 
 
 
-All possibility with Attributes
+All possibility with Attributes:
 
 ![](https://cdn.discordapp.com/attachments/796831997813194752/893340816947425320/unknown.png)
 
-Exemple : 
+Example : 
 
 ```cs
 using KiwiAttributes;
