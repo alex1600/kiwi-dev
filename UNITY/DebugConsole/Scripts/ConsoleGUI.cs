@@ -1,65 +1,79 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.CodeDom.Compiler;
 using UnityEngine;
-using UnityEngine.UIElements;
-using System.Reflection;
 
-enum ConsoleAnchorPosition
-{
+enum ConsoleAnchorPosition{
     Top,
     Bottom
 }
 
-public class ConsoleGUI : MonoBehaviour
-{
-    [SerializeField]
-    bool isConsoleDisplayed = false;
-    [SerializeField]
-    ConsoleAnchorPosition consoleAnchorPosition = ConsoleAnchorPosition.Bottom;
-    [SerializeField]
-    float consoleHeightRatio = 0.35f;
-    [SerializeField]
-    string consoleName = "Debug Console";
+public class ConsoleGUI : MonoBehaviour {
+    [SerializeField] private GUIStyle fontConsoleStyle;
+    [SerializeField] private GUIStyle fontInConsoleStyle;
+    [SerializeField] private int customFontSize = 12;
+    [SerializeField] private QuickConsoleToggler consoleToggler;
+    
+    [SerializeField] private bool isConsoleDisplayed;
+    [SerializeField] private ConsoleAnchorPosition consoleAnchorPosition = ConsoleAnchorPosition.Bottom;
+    [SerializeField] private float consoleHeightRatio = 0.35f;
+    [SerializeField] private string consoleName = "Debug Console";
 
-    Vector2 consoleScrollViewPosition;
-    int consoleHistoryCursor = 0;
-    int consoleInputHistorySize = 8;
-    string[] consoleInputStringHistory;
-    string consoleInputString;
-
-    public void ToggleConsole()
-    {
+    private Vector2 _consoleScrollViewPosition;
+    private int _consoleHistoryCursor;
+    private const int ConsoleInputHistorySize = 8;
+    private string[] _consoleInputStringHistory;
+    private string _consoleInputString;
+    private bool _isFocused;
+    
+    public void ToggleConsole(){
+        _isFocused = false;
         isConsoleDisplayed = !isConsoleDisplayed;
     }
 
-    private void Awake()
-    {
-        consoleScrollViewPosition = new Vector2(0, 0);
-        consoleInputString = string.Empty;
-        consoleInputStringHistory = new string[consoleInputHistorySize];
+    private void Awake(){
+        _consoleScrollViewPosition = Vector2.zero;
+        _consoleInputString = string.Empty;
+        _consoleInputStringHistory = new string[ConsoleInputHistorySize];
+        fontConsoleStyle = new GUIStyle("label")
+        {
+            fontSize = customFontSize,
+            name = "inputTf"
+        };
+        fontInConsoleStyle = new GUIStyle("textField")
+        {
+            fontSize = customFontSize
+        };
     }
 
-    private void OnGUI()
-    {
+    private void OnGUI(){
         if (!isConsoleDisplayed)
             return;
 
-        if (Event.current.Equals(Event.KeyboardEvent("return")) && consoleInputString != string.Empty)
-            ExecCmd();
+        if (Event.current.type == EventType.KeyDown)
+        {
+            switch (Event.current.keyCode)
+            {
+                case KeyCode.Return:
+                case KeyCode.KeypadEnter:
+                    if (String.IsNullOrEmpty(_consoleInputString) == false)
+                        ExecCmd();
+                    break;
+                case KeyCode.UpArrow:
+                    _consoleHistoryCursor = 1 + _consoleHistoryCursor % ConsoleInputHistorySize;
+                    if (_consoleInputStringHistory[ConsoleInputHistorySize - _consoleHistoryCursor] != null)
+                        _consoleInputString = _consoleInputStringHistory[ConsoleInputHistorySize - _consoleHistoryCursor];
+                    break;
+                case KeyCode.DownArrow:
+                    _consoleHistoryCursor = _consoleHistoryCursor <= 1 ? 1 : (_consoleHistoryCursor - 1);
+                    if (_consoleInputStringHistory[ConsoleInputHistorySize - ConsoleInputHistorySize] != null)
+                        _consoleInputString = _consoleInputStringHistory[ConsoleInputHistorySize - _consoleHistoryCursor];
+                    break;
+            }
 
-        if (Event.current.Equals(Event.KeyboardEvent("up")))
-        {
-            consoleHistoryCursor = 1 + consoleHistoryCursor % consoleInputHistorySize;
-            if (consoleInputStringHistory[consoleInputHistorySize - consoleHistoryCursor] != null)
-                consoleInputString = consoleInputStringHistory[consoleInputHistorySize - consoleHistoryCursor];
-        }
-        if (Event.current.Equals(Event.KeyboardEvent("Down")))
-        {
-            consoleHistoryCursor = consoleHistoryCursor <= 1 ? 1 : (consoleHistoryCursor - 1);
-            if (consoleInputStringHistory[consoleInputHistorySize - consoleHistoryCursor] != null)
-                consoleInputString = consoleInputStringHistory[consoleInputHistorySize - consoleHistoryCursor];
+            if (Event.current.keyCode == consoleToggler.ToggleKey)
+            {
+                ToggleConsole();
+                return;
+            }
         }
 
         Rect consoleRect = GetConsoleRect();
@@ -68,36 +82,38 @@ public class ConsoleGUI : MonoBehaviour
 
         GUILayout.BeginArea(consoleRect);
         
-        consoleScrollViewPosition = GUILayout.BeginScrollView(consoleScrollViewPosition);
+        _consoleScrollViewPosition = GUILayout.BeginScrollView(_consoleScrollViewPosition);
 
-        GUILayout.TextField(ConsoleCore.TextBuffer, "Label");
+        GUILayout.TextField(ConsoleCore.TextBuffer, fontConsoleStyle);
         GUILayout.EndScrollView();
-        consoleInputString = GUILayout.TextField(consoleInputString);
+        GUI.SetNextControlName("inputTf");
+        _consoleInputString = GUILayout.TextField(_consoleInputString, fontInConsoleStyle);
         GUILayout.EndArea();
+        
+        if (_isFocused) return;
+        _isFocused = true;
+        GUI.FocusControl("inputTf");
     }
 
-    private void ExecCmd()
-    {
-        Array.Copy(consoleInputStringHistory, 1, consoleInputStringHistory, 0, consoleInputHistorySize - 1);
-        consoleInputStringHistory[consoleInputHistorySize - 1] = consoleInputString;
-        consoleHistoryCursor = 0;
+    private void ExecCmd(){
+        Array.Copy(_consoleInputStringHistory, 1, _consoleInputStringHistory, 0, ConsoleInputHistorySize - 1);
+        _consoleInputStringHistory[ConsoleInputHistorySize - 1] = _consoleInputString;
+        _consoleHistoryCursor = 0;
 
-        ConsoleCore.ExecCmd(consoleInputString);
+        ConsoleCore.ExecCmd(_consoleInputString);
 
-        consoleInputString = string.Empty;
-        consoleScrollViewPosition = new Vector2(0, float.MaxValue);
+        _consoleInputString = string.Empty;
+        _consoleScrollViewPosition = new Vector2(0, float.MaxValue);
     }
 
     private Rect GetConsoleRect()
     {
-        switch (consoleAnchorPosition)
+        return consoleAnchorPosition switch
         {
-            case ConsoleAnchorPosition.Top:
-                return new Rect(0, 0, Screen.width, Screen.height * consoleHeightRatio);
-            case ConsoleAnchorPosition.Bottom:
-                return new Rect(0, Screen.height * (1 - consoleHeightRatio), Screen.width, Screen.height * consoleHeightRatio);
-            default:
-                return new Rect(0, 0, 0, 0);
-        }
+            ConsoleAnchorPosition.Top => new Rect(0, 0, Screen.width, Screen.height * consoleHeightRatio),
+            ConsoleAnchorPosition.Bottom => new Rect(0, Screen.height * (1 - consoleHeightRatio), Screen.width,
+                Screen.height * consoleHeightRatio),
+            _ => new Rect(0, 0, 0, 0)
+        };
     }
 }
