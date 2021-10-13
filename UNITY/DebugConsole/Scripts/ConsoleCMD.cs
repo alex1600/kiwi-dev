@@ -8,10 +8,10 @@ public abstract class BaseCMD
     private string commandId;
     private string commandDescription;
 
-    public string Id { get { return commandId; } }
-    public string Description { get { return commandDescription; } }
+    public string Id => commandId;
+    public string Description => commandDescription;
 
-    public BaseCMD(string commandId, string commandDescription)
+    protected BaseCMD(string commandId, string commandDescription)
     {
         this.commandId = commandId;
         this.commandDescription = commandDescription;
@@ -22,7 +22,7 @@ public abstract class BaseCMD
 
 public class ConsoleCMD : BaseCMD
 {
-    Action<string[]> action;
+    private Action<string[]> action;
     public ConsoleCMD(string commandId, string commandDescription, Action<string[]> action) 
         : base(commandId, commandDescription)
     {
