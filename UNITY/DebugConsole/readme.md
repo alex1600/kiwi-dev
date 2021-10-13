@@ -3,7 +3,7 @@ Having a drag & drop script to add a convenient in game debug console for unity.
 # HOW TO USE:
 Just drag & drop "ConsoleGUI" & "ConsoleCommands" scripts onto a gameobject. you can also add the "QuickConsoleToggler" script to be able to toggle the console with one key (Quote by default).
 
-![ConsoleGUI](https://imgur.com/a/ikjLiOV)
+![ConsoleGUI](https://i.imgur.com/BKpN7sn.png)
 
 A console is cool, but if u don't have any command it's not usefull. here is a sample code for how to do it :
 ```csharp
