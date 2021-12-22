@@ -8,7 +8,6 @@ public class CameraShake : MonoBehaviour
     public CinemachineVirtualCamera vcam;
     private static CinemachineBasicMultiChannelPerlin noise;
     private static List<float> shakesAmp;
-    [SerializeField] private float nerfShake = 1;
     
     private void Awake()
     {
@@ -23,8 +22,7 @@ public class CameraShake : MonoBehaviour
     /// <param name="duration">Shake duration</param>
     public static void Shake(float amp, float duration)
     {
-        float realAmp = amp * Instance.nerfShake;
-        Instance.StartCoroutine(Shaker(realAmp, duration));
+        StartCoroutine(Shaker(amp, duration));
     }
 
     private static IEnumerator Shaker(float amp, float duration)
