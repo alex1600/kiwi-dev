@@ -14,13 +14,10 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         get
         {
+            // Instance requiered for the first time, we look for it
             if (_instance == null)
             {
                 Debug.Log(typeof(T).ToString() + " is NULL");
-            }
-            // Instance requiered for the first time, we look for it
-            else
-            {
                 _instance = GameObject.FindObjectOfType(typeof(T)) as T;
             }
 
