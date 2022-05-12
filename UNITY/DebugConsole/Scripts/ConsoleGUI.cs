@@ -10,7 +10,6 @@ public class ConsoleGUI : MonoBehaviour {
     [SerializeField] private GUIStyle fontConsoleStyle;
     [SerializeField] private GUIStyle fontInConsoleStyle;
     [SerializeField] private int customFontSize = 12;
-    [SerializeField] private QuickConsoleToggler consoleToggler;
     
     [SerializeField] private bool isConsoleDisplayed;
     [SerializeField] private ConsoleAnchorPosition consoleAnchorPosition = ConsoleAnchorPosition.Bottom;
@@ -67,12 +66,6 @@ public class ConsoleGUI : MonoBehaviour {
                     if (_consoleInputStringHistory[ConsoleInputHistorySize - ConsoleInputHistorySize] != null)
                         _consoleInputString = _consoleInputStringHistory[ConsoleInputHistorySize - _consoleHistoryCursor];
                     break;
-            }
-
-            if (Event.current.keyCode == consoleToggler.ToggleKey)
-            {
-                ToggleConsole();
-                return;
             }
         }
 
