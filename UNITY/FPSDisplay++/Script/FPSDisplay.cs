@@ -165,6 +165,7 @@ public class FPSDisplay : MonoBehaviour
             }
 #endif
 
+
             yield return new WaitForSeconds(frequency);
         }
     }
@@ -191,7 +192,6 @@ public class FPSDisplay : MonoBehaviour
         
         if (!moreOptionInUI) GUI.Label(new(0, 0, startRect.width, startRect.height), $"FPS Display\n{Mathf.Round(fps)} FPS\n[{minFPS}Min {maxFPS}Max]", _style);
         else GUI.Label(new(0, 0, startRect.width, startRect.height), $"FPS Display\n{Mathf.Round(fps)} FPS\n[{minFPS}Min {maxFPS}Max]\nCpu {cpuusage}% \nMem {memsize}\nGC Used {GCmemsize}\nGCRes {GCResmemsize}\nSysMem {Sysmemsize}", _style);
-
     }
 
     private Rect ClampToScreen(Rect r) {
