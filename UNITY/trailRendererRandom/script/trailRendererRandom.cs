@@ -10,7 +10,7 @@ public class trailRendererRandom : MonoBehaviour
 	GradientColorKey[] colorKey;
 	GradientAlphaKey[] alphaKey;
 
-	private Start () {
+	void Start () {
 		trailRenderer = gameObject.GetComponent<TrailRenderer>();
 		trailRenderer.material = new Material(Shader.Find("Sprites/Default"));
 		trailRenderer.colorGradient = NewGrad();

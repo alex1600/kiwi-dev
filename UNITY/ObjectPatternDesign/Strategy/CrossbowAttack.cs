@@ -4,7 +4,7 @@ class CrossbowAttack : IAttack
     public float Range { get; set; }
     public int Arrows { get; set; }
 
-    void Execute(Player player)
+    public void Execute(Player player)
     {
         // TODO: Crossbow attack logic
     }

@@ -20,7 +20,7 @@ public class CameraShake : MonoBehaviour
     /// </summary>
     /// <param name="amp">Shake amplitude</param>
     /// <param name="duration">Shake duration</param>
-    public static void Shake(float amp, float duration)
+    public void Shake(float amp, float duration)
     {
         StartCoroutine(Shaker(amp, duration));
     }
