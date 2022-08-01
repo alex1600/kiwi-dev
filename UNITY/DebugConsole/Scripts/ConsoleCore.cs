@@ -6,7 +6,7 @@ using UnityEditor;
 
 public class ConsoleCore
 {
-    static List<BaseCMD> consoleCmd = new List<BaseCMD>();
+    public static List<BaseCMD> consoleCmd = new List<BaseCMD>();
     static public string TextBuffer { get; private set; } = string.Empty;
 
     static public void AddCmd(BaseCMD cmd)

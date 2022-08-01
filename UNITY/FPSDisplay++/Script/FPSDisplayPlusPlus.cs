@@ -9,7 +9,7 @@ using UnityEngine;
 
 #endregion
 
-public class FPSDisplay : MonoBehaviour
+public class FPSDisplayPlusPlus : MonoBehaviour
 {
     [SerializeField] private Rect startRect = new Rect(10, 10, 145, 50);
     [SerializeField] private float fps;
@@ -107,11 +107,11 @@ public class FPSDisplay : MonoBehaviour
         }
 
 #if UNITY_EDITOR
-    [MenuItem("GameObject/Utils/FPSDisplay", false, 10)]
+    [MenuItem("GameObject/Utils/FPSDisplayPlusPlus", false, 10)]
     private static void CreateCustomGameObject(MenuCommand menuCommand)
     {
-        var go = new GameObject("FPSDisplay");
-        go.AddComponent<FPSDisplay>();
+        var go = new GameObject("FPSDisplayPlusPlus");
+        go.AddComponent<FPSDisplayPlusPlus>();
         GameObjectUtility.SetParentAndAlign(go, menuCommand.context as GameObject);
         Undo.RegisterCreatedObjectUndo(go, "Create " + go.name);
         Selection.activeObject = go;

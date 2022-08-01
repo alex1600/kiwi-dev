@@ -21,6 +21,6 @@ public class AudioObject : MonoBehaviour
     }
 	
 	public void PlayOneShot(){
-		source.PlayOneShot();
+		source.PlayOneShot(clip);
 	}
 }

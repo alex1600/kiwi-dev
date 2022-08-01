@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement3D : MonoBehaviour {
     public CharacterController controller;
     private Vector3 velocityMove = Vector3.zero;
 
