@@ -19,6 +19,7 @@ New to the community? Got a lot of questions but don't know where to post them? 
 
 - Alexandre2BI (Twitter: @Alexandre2BI)
 - NoonSense (Twitter: @NoonSenseGames)
+- Psyko
 
 # Contributors
 
