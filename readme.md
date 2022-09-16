@@ -28,3 +28,4 @@ New to the community? Got a lot of questions but don't know where to post them? 
 - [NoonSense](https://github.com/NoonSense) (UNITY)
 - [HITOA](https://github.com/HITOA) (UNITY)
 - [XanTiuM-Dev](https://github.com/XanTiuM-Dev) (UNITY)
+- [Resnox](https://github.com/Resnox) (UNITY/SHADERS)
