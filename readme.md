@@ -1,11 +1,11 @@
 # About this repository
 
-Welcome on the community hub where you can find scripts to help you in your projects or to learn more from differents topics. We wanted to centralize scripts for many topics to help the others and to growth our skills together ! 
+Welcome on the community hub where you can find scripts to help you in your projects or to learn more from differents topics. We wanted to centralize scripts for many topics to help the others and to grow our skills together! 
 
 # About the community
 
-Originally, the community was borned on Discord thanks to Alexandre2BI's streams on Twitch. 
-But many other developper and also french streamers are joined the community to share their scripts and skills ! From this, we made the decision to built this public repository.  
+Originally, the community was born on Discord thanks to Alexandre2BI's streams on Twitch.
+But other developers and also french streamers joined the community to share their scripts and skills! From this, we made the decision to built this public repository.  
 
 # Contributor guidelines
 
